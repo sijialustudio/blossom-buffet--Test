@@ -1,0 +1,746 @@
+[gd_scene load_steps=47 format=3 uid="uid://dm5wop745jvr4"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_cl7k0"]
+[ext_resource type="Texture2D" uid="uid://2dyohgjg3rfa" path="res://assets/background.jpg" id="1_jx5ku"]
+[ext_resource type="Script" path="res://scripts/bubu.gd" id="1_usgc6"]
+[ext_resource type="Texture2D" uid="uid://egtv1fn8mbyc" path="res://assets/new_assets/background.png" id="2_cysm1"]
+[ext_resource type="Texture2D" uid="uid://bhuk2iv3mofli" path="res://assets/bubu.png" id="2_vq3bs"]
+[ext_resource type="Script" path="res://scripts/food_spawner.gd" id="3_od0gl"]
+[ext_resource type="PackedScene" uid="uid://cwueybgvt4eq7" path="res://scenes/food.tscn" id="4_lxrig"]
+[ext_resource type="PackedScene" uid="uid://b7seeawya17l0" path="res://scenes/food2.tscn" id="5_0da4j"]
+[ext_resource type="PackedScene" uid="uid://42mi6d5xp85u" path="res://scenes/bad_food_scene.tscn" id="6_0tm3h"]
+[ext_resource type="PackedScene" uid="uid://cqb7wkq53mug2" path="res://scenes/food3.tscn" id="6_trtra"]
+[ext_resource type="Script" path="res://scripts/dudu.gd" id="8_gr8tl"]
+[ext_resource type="Texture2D" uid="uid://b0kdu41w2xl1b" path="res://assets/image.png" id="9_13fax"]
+[ext_resource type="Script" path="res://scenes/spawn_point.gd" id="11_bi8vs"]
+[ext_resource type="Script" path="res://scenes/badfoodspawner.gd" id="12_6brb0"]
+[ext_resource type="AudioStream" uid="uid://ck3u84vpsthyp" path="res://assets/audio/caketown.mp3" id="13_vg3p3"]
+[ext_resource type="AudioStream" uid="uid://c2twwkkgevpyu" path="res://assets/audio/Socapex - Evol Online SFX - Punches and hits/Socapex - new_hits_2.wav" id="14_hu1n1"]
+[ext_resource type="AudioStream" uid="uid://c4wcx1p7gtubi" path="res://assets/audio/life_pickup.mp3" id="15_ksh55"]
+[ext_resource type="AudioStream" uid="uid://bjf7g3nqbsi6j" path="res://assets/audio/playerhit_0.mp3" id="16_27cb8"]
+[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="17_pqapi"]
+[ext_resource type="Script" path="res://scenes/blossom.gd" id="18_8xps7"]
+[ext_resource type="Texture2D" uid="uid://cv5qnspx8p5lu" path="res://assets/new_assets/blossom-sleep-background-removed.png" id="21_vlwdr"]
+[ext_resource type="Texture2D" uid="uid://bn1wj23rpqt7v" path="res://assets/new_assets/Blossom_upset stomach.png" id="22_6pudu"]
+[ext_resource type="Script" path="res://scenes/luna.gd" id="23_75iba"]
+[ext_resource type="Texture2D" uid="uid://debe6m2nico5d" path="res://assets/new_assets/Luna_trapTrigger_chase.png" id="23_jpqmt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xo2qp"]
+radius = 71.0
+height = 166.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8mvv2"]
+radius = 44.0
+height = 130.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53lut"]
+size = Vector2(140, 94)
+
+[sub_resource type="Animation" id="Animation_2nnid"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0yd5l"]
+resource_name = "cut"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.3, 0.3), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bkfog"]
+_data = {
+"RESET": SubResource("Animation_2nnid"),
+"cut": SubResource("Animation_0yd5l")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_tp1s2"]
+font_size = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0frqn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfajo"]
+bg_color = Color(7.46027e-07, 0.54669, 0.167454, 1)
+
+[sub_resource type="Animation" id="Animation_q6r3h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.752941, 0.0313726, 0.243137, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_3sh6i"]
+resource_name = "heal"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.752941, 0.0313726, 0.243137, 0), Color(0, 0.486275, 0.27451, 1), Color(0, 0.486275, 0.27451, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ehuhi"]
+resource_name = "hurt"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.752941, 0.0313726, 0.243137, 0), Color(0.752941, 0.0313726, 0.243137, 1), Color(0.752941, 0.0313726, 0.243137, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xa708"]
+_data = {
+"RESET": SubResource("Animation_q6r3h"),
+"heal": SubResource("Animation_3sh6i"),
+"hurt": SubResource("Animation_ehuhi")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_faa3e"]
+radius = 250.0
+
+[sub_resource type="Animation" id="Animation_bb6hs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ellipse2:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(500, 500)]
+}
+
+[sub_resource type="Animation" id="Animation_jedbq"]
+resource_name = "breath"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ellipse2:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(500, 500), Vector2(550, 550), Vector2(500, 500)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v68t6"]
+_data = {
+"RESET": SubResource("Animation_bb6hs"),
+"breath": SubResource("Animation_jedbq")
+}
+
+[sub_resource type="Animation" id="Animation_dyuh8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("idle:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("upset:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hurt:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_li1uj"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hurt:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("upset:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("idle:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_y08g0"]
+resource_name = "idle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("idle:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("upset:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hurt:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_tcxx4"]
+resource_name = "upset"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("idle:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("upset:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hurt:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eicms"]
+_data = {
+"RESET": SubResource("Animation_dyuh8"),
+"hurt": SubResource("Animation_li1uj"),
+"idle": SubResource("Animation_y08g0"),
+"upset": SubResource("Animation_tcxx4")
+}
+
+[node name="Main" type="Node2D"]
+position = Vector2(2, 0)
+script = ExtResource("1_cl7k0")
+
+[node name="NewBackground" type="Sprite2D" parent="."]
+position = Vector2(758, 463)
+scale = Vector2(3.32099, 3.32099)
+texture = ExtResource("2_cysm1")
+metadata/_edit_lock_ = true
+
+[node name="Background" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(666, 168)
+scale = Vector2(0.507676, 0.224947)
+texture = ExtResource("1_jx5ku")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -72584.0
+offset_top = -42442.0
+offset_right = 73856.0
+offset_bottom = 42716.0
+color = Color(0.752941, 0.0313726, 0.243137, 1)
+
+[node name="Bubu" type="CharacterBody2D" parent="."]
+position = Vector2(152, 461)
+collision_mask = 2
+script = ExtResource("1_usgc6")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Bubu"]
+position = Vector2(-3, -24)
+scale = Vector2(0.359341, 0.359341)
+texture = ExtResource("2_vq3bs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bubu"]
+position = Vector2(0, -36)
+shape = SubResource("CapsuleShape2D_xo2qp")
+
+[node name="CutTimer" type="Timer" parent="Bubu"]
+
+[node name="DuduPosition" type="Marker2D" parent="Bubu"]
+position = Vector2(106, -24)
+
+[node name="Camera2D" type="Camera2D" parent="Bubu"]
+zoom = Vector2(0.46, 0.46)
+
+[node name="Area2D" type="Area2D" parent="Bubu" groups=["player"]]
+position = Vector2(-2, -36)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bubu/Area2D"]
+shape = SubResource("CapsuleShape2D_8mvv2")
+debug_color = Color(0.933548, 2.03112e-05, 0.644214, 0.42)
+
+[node name="FoodSpawner" type="Node2D" parent="." node_paths=PackedStringArray("player", "blossom")]
+z_index = 2
+z_as_relative = false
+script = ExtResource("3_od0gl")
+good_food_scenes = Array[PackedScene]([ExtResource("4_lxrig"), ExtResource("5_0da4j"), ExtResource("6_trtra")])
+bad_food_scene = ExtResource("6_0tm3h")
+spawn_rate = 10.0
+player = NodePath("../Bubu")
+blossom = NodePath("../Blossom")
+blossom_radius = 500.0
+
+[node name="SpawnTimer" type="Timer" parent="FoodSpawner"]
+wait_time = 10.0
+autostart = true
+
+[node name="InitialTimer" type="Timer" parent="FoodSpawner"]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="Marker2D" type="Marker2D" parent="FoodSpawner" groups=["spawn_points"]]
+position = Vector2(2085, 529)
+script = ExtResource("11_bi8vs")
+
+[node name="Marker2D2" type="Marker2D" parent="FoodSpawner" groups=["spawn_points"]]
+position = Vector2(203, 1024)
+script = ExtResource("11_bi8vs")
+
+[node name="Marker2D3" type="Marker2D" parent="FoodSpawner" groups=["spawn_points"]]
+position = Vector2(1239, 1025)
+script = ExtResource("11_bi8vs")
+
+[node name="Marker2D4" type="Marker2D" parent="FoodSpawner" groups=["spawn_points"]]
+position = Vector2(1685, 1016)
+script = ExtResource("11_bi8vs")
+
+[node name="Marker2D5" type="Marker2D" parent="FoodSpawner" groups=["spawn_points"]]
+position = Vector2(1620, -87)
+script = ExtResource("11_bi8vs")
+
+[node name="Marker2D6" type="Marker2D" parent="FoodSpawner" groups=["spawn_points"]]
+position = Vector2(903, -501)
+script = ExtResource("11_bi8vs")
+
+[node name="Marker2D14" type="Marker2D" parent="FoodSpawner" groups=["spawn_points"]]
+position = Vector2(1583, -551)
+script = ExtResource("11_bi8vs")
+
+[node name="Marker2D7" type="Marker2D" parent="FoodSpawner" groups=["spawn_points"]]
+position = Vector2(-174, -621)
+script = ExtResource("11_bi8vs")
+
+[node name="Marker2D15" type="Marker2D" parent="FoodSpawner" groups=["spawn_points"]]
+position = Vector2(311, -753)
+script = ExtResource("11_bi8vs")
+
+[node name="Marker2D8" type="Marker2D" parent="FoodSpawner" groups=["spawn_points"]]
+position = Vector2(-884, 879)
+script = ExtResource("11_bi8vs")
+
+[node name="Marker2D9" type="Marker2D" parent="FoodSpawner" groups=["spawn_points"]]
+position = Vector2(-664, 264)
+script = ExtResource("11_bi8vs")
+
+[node name="Marker2D10" type="Marker2D" parent="FoodSpawner" groups=["spawn_points"]]
+position = Vector2(-555, -98)
+script = ExtResource("11_bi8vs")
+
+[node name="Marker2D11" type="Marker2D" parent="FoodSpawner" groups=["spawn_points"]]
+position = Vector2(-379, 254)
+script = ExtResource("11_bi8vs")
+
+[node name="Marker2D12" type="Marker2D" parent="FoodSpawner" groups=["spawn_points"]]
+position = Vector2(677, 1081)
+script = ExtResource("11_bi8vs")
+
+[node name="Marker2D13" type="Marker2D" parent="FoodSpawner" groups=["spawn_points"]]
+position = Vector2(-664, 1310)
+script = ExtResource("11_bi8vs")
+
+[node name="badfoodspawner" type="Node2D" parent="."]
+script = ExtResource("12_6brb0")
+
+[node name="Dudu" type="Node2D" parent="."]
+position = Vector2(-92, -105)
+script = ExtResource("8_gr8tl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Dudu"]
+position = Vector2(-4, -24)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_13fax")
+
+[node name="Area2D" type="Area2D" parent="Dudu"]
+position = Vector2(18, 9)
+collision_layer = 3
+collision_mask = 3
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dudu/Area2D"]
+position = Vector2(60, -11)
+shape = SubResource("RectangleShape2D_53lut")
+
+[node name="DuduAnimation" type="AnimationPlayer" parent="Dudu"]
+libraries = {
+"": SubResource("AnimationLibrary_bkfog")
+}
+
+[node name="Timer" type="Timer" parent="Dudu"]
+wait_time = 5.0
+autostart = true
+
+[node name="DuduTimer" type="Timer" parent="Dudu"]
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 429.0
+offset_bottom = 84.0
+color = Color(0.295867, 0.295866, 0.295866, 1)
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 2.0
+offset_right = 414.0
+offset_bottom = 30.0
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 18
+step = 1.0
+value = 100.0
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 800.0
+offset_right = 841.145
+offset_bottom = 23.0
+size_flags_horizontal = 4
+text = "health"
+metadata/_edit_lock_ = true
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+offset_left = 920.0
+offset_top = -1.0
+offset_right = 1071.0
+offset_bottom = 54.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_tp1s2")
+
+[node name="CutBar" type="ProgressBar" parent="CanvasLayer"]
+visible = false
+offset_left = 10.0
+offset_top = 41.0
+offset_right = 247.0
+offset_bottom = 68.0
+theme_override_styles/background = SubResource("StyleBoxFlat_0frqn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qfajo")
+max_value = 4.0
+step = 1.0
+value = 4.0
+show_percentage = false
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DuduOne" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 22.0
+offset_right = 53.0
+offset_bottom = 72.0
+texture = ExtResource("9_13fax")
+expand_mode = 1
+
+[node name="DuduTwo" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 22.0
+offset_right = 98.0
+offset_bottom = 72.0
+texture = ExtResource("9_13fax")
+expand_mode = 1
+
+[node name="DuduThree" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 22.0
+offset_right = 148.0
+offset_bottom = 72.0
+texture = ExtResource("9_13fax")
+expand_mode = 1
+
+[node name="DuduFour" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 22.0
+offset_right = 196.0
+offset_bottom = 72.0
+texture = ExtResource("9_13fax")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xa708")
+}
+
+[node name="dudu_original_position" type="Marker2D" parent="."]
+position = Vector2(133, -160)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_vg3p3")
+volume_db = -8.0
+autoplay = true
+metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_hu1n1")
+metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_ksh55")
+metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer2D4" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_27cb8")
+metadata/_edit_lock_ = true
+
+[node name="Blossom" type="Node2D" parent="." node_paths=PackedStringArray("bubu")]
+position = Vector2(703, 368)
+script = ExtResource("18_8xps7")
+bubu = NodePath("../Bubu")
+
+[node name="Area2D" type="Area2D" parent="Blossom" groups=["blossom"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blossom/Area2D"]
+shape = SubResource("CircleShape2D_faa3e")
+
+[node name="Ellipse" type="Node2D" parent="Blossom"]
+script = ExtResource("17_pqapi")
+size = Vector2(400, 400)
+
+[node name="Ellipse2" type="Node2D" parent="Blossom"]
+script = ExtResource("17_pqapi")
+size = Vector2(500, 500)
+style = 1
+outline_width = 4
+outline_color = Color(0.686275, 0.823529, 0.215686, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Blossom"]
+libraries = {
+"": SubResource("AnimationLibrary_v68t6")
+}
+
+[node name="idle" type="Sprite2D" parent="Blossom"]
+scale = Vector2(0.87, 0.87)
+texture = ExtResource("21_vlwdr")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="upset" type="Sprite2D" parent="Blossom"]
+position = Vector2(-9, -3)
+scale = Vector2(0.47, 0.47)
+texture = ExtResource("22_6pudu")
+hframes = 2
+
+[node name="hurt" type="Sprite2D" parent="Blossom"]
+visible = false
+scale = Vector2(0.46, 0.46)
+texture = ExtResource("22_6pudu")
+hframes = 2
+frame = 1
+
+[node name="characteranimation" type="AnimationPlayer" parent="Blossom"]
+libraries = {
+"": SubResource("AnimationLibrary_eicms")
+}
+
+[node name="Food" parent="." instance=ExtResource("6_0tm3h")]
+position = Vector2(1576, 339)
+speed = 50
+
+[node name="Luna" type="Node2D" parent="."]
+position = Vector2(-262, 759)
+script = ExtResource("23_75iba")
+metadata/_edit_group_ = true
+
+[node name="Ellipse2" type="Node2D" parent="Luna"]
+script = ExtResource("17_pqapi")
+size = Vector2(400, 400)
+style = 1
+outline_width = 2
+outline_color = Color(0.141176, 0.541176, 0.192157, 1)
+
+[node name="Ellipse" type="Node2D" parent="Luna"]
+script = ExtResource("17_pqapi")
+size = Vector2(320, 320)
+fill_color = Color(0.996078, 0.945098, 0.909804, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Luna"]
+scale = Vector2(0.285, 0.285)
+texture = ExtResource("23_jpqmt")
+hframes = 4
+
+[connection signal="timeout" from="FoodSpawner/InitialTimer" to="FoodSpawner" method="_on_initial_timer_timeout"]
+[connection signal="area_entered" from="Dudu/Area2D" to="Dudu" method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Dudu/Area2D" to="Dudu" method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Dudu/Timer" to="Dudu" method="_on_timer_timeout"]
+[connection signal="timeout" from="Dudu/DuduTimer" to="Dudu" method="_on_dudu_timer_timeout"]
+[connection signal="area_entered" from="Blossom/Area2D" to="Blossom" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Blossom/Area2D" to="Blossom" method="_on_area_2d_area_exited"]
